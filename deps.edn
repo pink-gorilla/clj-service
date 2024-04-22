@@ -8,7 +8,7 @@
   org.pinkgorilla/websocket {:mvn/version "0.0.7"}
   org.pinkgorilla/permission {:mvn/version "0.0.15"}
   org.pinkgorilla/ui-dialog-keybindings {:mvn/version "0.1.6"}
-  org.pinkgorilla/extension {:mvn/version "0.0.11"}
+  org.pinkgorilla/extension {:mvn/version "0.0.12"}
   }
  :aliases
  {; github ci  

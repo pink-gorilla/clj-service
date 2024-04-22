@@ -1,7 +1,7 @@
 (ns goldly.service
   (:require
    [taoensso.timbre :as timbre :refer [info]]
-   [extension :refer [discover write-service get-extensions]]
+   [extension :refer [write-target-webly get-extensions]]
    [goldly.service.expose :as expose]))
 
 (defn- expose-extension-clj-services [clj-services]
@@ -16,5 +16,5 @@
 (defn start-clj-services [exts]
   (info "starting clj-services ..")
   (let [config (exts->services exts)]
-    (write-service exts :clj-services config)
+    (write-target-webly exts :clj-services config)
     (expose-extension-clj-services config)))
