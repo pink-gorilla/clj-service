@@ -16,5 +16,5 @@
 (defn start-clj-services [exts]
   (info "starting clj-services ..")
   (let [config (exts->services exts)]
-    (write-target-webly exts :clj-services config)
+    (write-target-webly :clj-services config)
     (expose-extension-clj-services config)))
