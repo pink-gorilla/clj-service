@@ -17,4 +17,5 @@
   (let [rp (clj 'goldly.service.core/services-list)
         a (r/atom [])]
     (p/then rp (fn [r] (reset! a r)))
-   [keyword-list "services" @a]))
+   (fn [_]
+     [keyword-list "services" @a])))

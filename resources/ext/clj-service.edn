@@ -12,5 +12,8 @@
  ; run
  ; clj-service allows requests via http post
  :api-routes {"clj-service"  {:post goldly.service.handler/service-handler-wrapped}}
+ :clj-services {:name "clj-service-dissovery"
+                :permission  #{}
+                :symbols [goldly.service/services-list]}
 ; 
 }
