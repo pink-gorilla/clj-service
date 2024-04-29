@@ -1,8 +1,7 @@
 {:name "clj-service"
  :lazy false
  ; build
- :cljs-namespace [goldly.service.core
-                  goldly.service.devtools.page/clj-service-page]
+ :cljs-namespace [goldly.service.core]
  :cljs-ns-bindings {'goldly.service.core {'clj goldly.service.core/clj
                                           'clj-atom goldly.service.core/clj-atom
                                           'run goldly.service.core/run
@@ -13,6 +12,5 @@
  ; run
  ; clj-service allows requests via http post
  :api-routes {"clj-service"  {:post goldly.service.handler/service-handler-wrapped}}
- :dev-page {"clj-service" goldly.service.devtools.page/clj-service-page}
 ; 
 }
