@@ -1,7 +1,6 @@
 {:name "demo"
  ; build
  :lazy true
- :lazy-sci true
  :cljs-namespace [demo.page]
  :cljs-ns-bindings {'demo.page {'service-page demo.page/service-page}}
  ;runtime
