@@ -1,7 +1,8 @@
 {:name "clj-service"
  :lazy false
  ; build
- :cljs-namespace [goldly.service.core]
+ :cljs-namespace [goldly.service.core
+                  goldly.service.devtools.page/clj-service-page]
  :cljs-ns-bindings {'goldly.service.core {'clj goldly.service.core/clj
                                           'clj-atom goldly.service.core/clj-atom
                                           'run goldly.service.core/run
