@@ -1,35 +1,46 @@
 (ns service-test
   (:require
    [clojure.test :refer [deftest is testing]]
-   [goldly.service.core :as s]))
+   [de.otto.nom.core :as nom]
+   [extension :refer [discover]]
+   [modular.permission.core :refer [start-permissions]]
+   [clj-service.core :as s :refer [start-clj-services expose-functions services-list]]
+   [clj-service.executor :refer [execute]]))
 
-(defn fun-noargs []
-  27)
+(def p  (start-permissions {})) ; empty map means no permissions
 
-(defn fun-add [a b]
-  (+ a b))
+(def this (start-clj-services p (discover)))
 
-(defn fun-ex []
-  (throw (Exception. "bad")))
+(expose-functions this {:name "demo-static"
+                        :symbols ['funs/fun-noargs
+                                  'funs/fun-add
+                                  'funs/fun-ex]
+                        :permission nil
+                        :fixed-args []})
 
-(s/add {:test/noargs fun-noargs
-        :test/add fun-add
-        :test/ex fun-ex})
+(expose-functions this {:name "demo-service"
+                        :symbols ['funs/fun-service]
+                        :permission nil
+                        :fixed-args [[:a :b :c]]})
 
-(defn err? [r]
-  (and (:error r)
-       (= nil (:result r))))
+(println "exposed functions: " (services-list this))
+
+(defn run [fun & args]
+  (let [user nil]
+    (execute this user fun args)))
 
 (deftest services-test
   (testing "services test"
-    (let [a (s/run :test/noargs)
-          b (s/run :test/add 2 7)
-          c (s/run :test/ex) ; called fn throws ex
-          d (s/run :test/add)  ; missing params
-          e (s/run :test/unknown) ; unknown service
+    (let [a (run 'funs/fun-noargs)
+          b (run 'funs/fun-add 2 7)
+          c (run 'funs/fun-ex) ; called fn throws ex
+          d (run 'funs/fun-add)  ; missing params
+          e (run 'funs/unknown-function) ; unknown service
+          f (run 'funs/fun-service [1 2 3]) ; unknown service
           ]
-      (is (= a {:result 27}))
-      (is (= b {:result 9}))
-      (is (err? c))
-      (is (err? d))
-      (is (err? e)))))
+      (is (= a 27))
+      (is (= b 9))
+      (is (nom/anomaly? c))
+      (is (nom/anomaly? d))
+      (is (nom/anomaly? e))
+      (is (= f [:a :b :c 1 2 3])))))

@@ -9,12 +9,17 @@
   ^{:doc "The user-id for which a clj-service gets executed"}
   *user* nil)
 
-(defn execute [this permission-service user-id fun-symbol & args]
-  (if-let [fun (get this fun-symbol)]
-    (let [{:keys [function _permission fixed-args]} fun
+(defn execute
+  "executes a service-fn with args + fixed-args
+   returns the result or a nom/anomaly"
+  [{:keys [services permission-service] :as _this} user-id fun-symbol args]
+  (if-let [fun (get @services fun-symbol)]
+    (let [{:keys [service-fn _permission fixed-args]} fun
           full-args (concat fixed-args args)]
+      ;(println "executing: " fun-symbol " fixed-args: " fixed-args " args: " args)
+      ;(println "full args: " full-args)
       (if (user-authorized? permission-service fun-symbol user-id)
-        (try {:result (apply function full-args)}
+        (try (apply service-fn full-args)
              (catch clojure.lang.ExceptionInfo e
                (nom/fail ::exception {:fun fun-symbol
                                       :error (pr-str e)
@@ -31,5 +36,12 @@
                                    :user user-id
                                    :message (str "user-id  " user-id " is not authorized for: " fun-symbol)})))
     (nom/fail ::function-not-found {:fun fun-symbol
+                                    ;:
                                     :message "No service defined for this symbol."})))
 
+
+ (defn execute-with-binding [this user-id fun-symbol args]
+   (binding [*user* user-id]
+     (execute this user-id fun-symbol args)))
+
+ 

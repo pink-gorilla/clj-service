@@ -3,15 +3,10 @@
  :components
  {:config {:start (modular.config/load-config! (:config #ref [:modular]))}
 
-  :exts {:start (extension/discover)} 
+  :exts {:start (extension/discover)}
 
   :timbre {:start (modular.log/timbre-config!
                    (:timbre/clj (deref (clip/ref :config))))}
-  
-  :webly {:start (webly.app.app/start-webly
-                (deref (clip/ref :config))
-                (:profile #ref [:modular]))
-         :stop (webly.app.app/stop-webly this)}
 
   :permission {:start (modular.permission.core/start-permissions
                        {:demo {:roles #{:logistic}
@@ -20,15 +15,22 @@
                         :boss {:roles #{:logistic :supervisor :accounting}
                                :password "a231498f6c1f441aa98482ea0b224ffa" ; "1234"
                                :email ["boss@doe.com"]}
-                          :florian {:roles #{:logistic}
+                        :florian {:roles #{:logistic}
                                   :password "a231498f6c1f441aa98482ea0b224ffa" ; 1234
                                   :email ["hoertlehner@gmail.com"]}
                         :john {:roles #{:logistic}
                                :password "a231498f6c1f441aa98482ea0b224ffa" ; "1234"
                                :email ["john@doe.com"]}})}
 
+  :clj-service {:start (clj-service.core/start-clj-services
+                        (clip/ref :permission)
+                        (clip/ref :exts))}
 
-    :clj-service {:start (clj-service.core/start-clj-services (clip/ref :permission) (clip/ref :exts))}
+  :webly {:start (webly.app.app/start-webly
+                  (clip/ref :exts)
+                  (deref (clip/ref :config))
+                  (:profile #ref [:modular]))
+          :stop (webly.app.app/stop-webly this)}
 
 ;  
   }}

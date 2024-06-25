@@ -4,66 +4,53 @@
    [promesa.core :as p]
    [goldly.service.core :refer [clj]]))
 
-(def state
-  (r/atom {}))
+(defn clj->atom [a & args]
+  (println "executing clj: " args)
+  (let [data-p (apply clj args)]
+    (-> data-p
+        (p/then (fn [result]
+                  (reset! a result)))
+        (p/catch (fn [err]
+                   (println "error clj req: " args " error: " err))))
+    nil))
 
-(defn clj-add []
-  (run-a state [:add-result]  'demo.service/add 2 7))
+(def quote-a (r/atom {}))
+(def add-a (r/atom {}))
+(def ex-a (r/atom {}))
+(def slow-a (r/atom {}))
 
 (defn clj-quote []
-  (run-a state [:quote] 'demo.service/quote))
+  ; clj exec no args
+  (clj->atom quote-a 'demo.service/quote))
+
+(defn clj-add []
+  ; clj exec with args
+  (clj->atom add-a 'demo.service/add 2 7))
 
 (defn clj-ex []
-  (run-a state [:ex-result] 'demo.service/ex))
+  ; test fn execution exception
+  (clj->atom ex-a 'demo.service/ex))
 
 (defn clj-quote-slow []
-  (run-a-map {:a state
-              :path [:quote-slow]
-              :fun 'demo.service/quote-slow
-              :timeout 1000}))
+  (clj->atom slow-a {:timeout 1000} 'demo.service/quote-slow))
 
-(defn clj-promise []
-  (swap! state assoc :quote-promise (clj 'demo.service/quote)))
-
-(defn promise-status [pr]
-  [:div "promise status:"
-   " resolved?: " (pr-str (p/resolved? pr))
-    ; " rejected?: " (pr-str (p/rejected? pr))
-   " pending?: " (pr-str (p/pending? pr))
-   " done?: " (pr-str (p/done? pr))
-   " promise?: " (pr-str (p/promise? pr))
-   " thenable?: " (pr-str (p/thenable? pr))])
-
-(defn promise-result [pr]
-  (if (p/resolved? pr)
-    [:p (pr-str @pr)]
-    [:p "-pending"]))
 
 (defn show-page []
   [:div
    [:p.text-big.text-blue-900.text-bold "clj-services tests .."]
 
    [:div.bg-green-500.m-5.p-5
-    [:button.bg-blue-500 {:on-click #(clj-add)} "add numbers (clj)"]
-    [:p "result: " (pr-str (:add-result @state))]]
-
-   [:div.bg-green-500.m-5.p-5
     [:button.bg-blue-500 {:on-click #(clj-quote)} "get quote (fast)"]
-    [:p "result: " (pr-str (:quote @state))]]
+    [:p "result: " (pr-str @quote-a)]]
+   
+   [:div.bg-green-500.m-5.p-5
+    [:button.bg-blue-500 {:on-click #(clj-add)} "add numbers (clj)"]
+    [:p "result: " (pr-str @add-a)]]
 
    [:div.bg-green-500.m-5.p-5
     [:button.bg-blue-500 {:on-click #(clj-quote-slow)} "get quote (slow)"]
-    [:p "result: " (pr-str (:quote-slow @state))]]
-
-   [:div.bg-green-500.m-5.p-5
-    [:button.bg-blue-500 {:on-click #(clj-promise)} "get quote (promise)"]
-    (when (:quote-promise @state)
-      [:p "promise status: " [promise-status (:quote-promise @state)]]
-      [:p "result: " [promise-result (:quote-promise @state)]])]
-
-   [:div.bg-blue-300.mg-3
-    "state: "
-    (pr-str @state)]])
+    [:p "see log for timeout error logging."]
+    [:p "result: " (pr-str @slow-a)]]])
 
 (defn service-page [_route]
   [show-page])

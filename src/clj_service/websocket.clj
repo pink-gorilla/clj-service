@@ -2,21 +2,30 @@
   (:require
    [clojure.string]
    [de.otto.nom.core :as nom]
-   [modular.ws.core :refer [send-response]]
-   [modular.ws.msg-handler :refer [-event-msg-handler]]
+   [taoensso.timbre :as timbre :refer [error]]
+   [modular.ws.msg-handler :refer [-event-msg-handler send-response]]
    [modular.permission.session :refer [get-user]]
-   [clj-service.executor :refer [execute *user*]]))
+   [clj-service.executor :refer [execute-with-binding *user*]]))
 
-(defn create-websocket-responder [this permission-service]
+
+(defn error-response [user fun args r]
+  (error "clj-service websocket execution error: " r)
+  {:error "Execution exception"
+   :user user
+   :fun fun
+   :args args})
+
+(defn response [r]
+  {:result r})
+
+(defn create-websocket-responder [{:keys [permission-service] :as this}]
   (defmethod -event-msg-handler :clj/service
     [{:keys [event _id _?data uid] :as req}]
     (let [[_ params] event ; _ is :clj/service
           {:keys [fun args]} params
           user (get-user permission-service uid)]
       (future
-        (let [r (binding [*user* user]
-                  (execute this permission-service user fun args))]
+        (let [r (execute-with-binding this user fun args)]
           (if (nom/anomaly? r)
-            (send-response req :clj/service  {:error "Execution exception"
-                                              :uid uid})
-            (send-response req :clj/service {:result r})))))))
+            (send-response req :clj/service (error-response user fun args r) )
+            (send-response req :clj/service (response r))))))))

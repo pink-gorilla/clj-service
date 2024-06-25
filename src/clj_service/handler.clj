@@ -4,18 +4,20 @@
    [ring.util.response :as res]
    [de.otto.nom.core :as nom]
    [modular.webserver.middleware.api :refer [wrap-api-handler]]
-   [goldly.service.executor :refer [run-service *user*]]))
+   [clj-service.executor :refer [execute-with-binding *user*]]))
 
 (defn service-handler
   [req]
   (info "service-api-handler: " req)
   (let [body-params (:body-params req)
-        args (select-keys body-params [:fun :args])
+        {:keys [fun args]} body-params
         _ (info "service: "  args)
-        response  (binding [*user* nil]
-                    (run-service args))]
-    (if (nom/anomaly? response)
-      (res/bad-request response)
-      (res/response response))))
+        this nil
+        user nil
+        r  (execute-with-binding this user fun args)]
+    (if (nom/anomaly? r)
+      (res/bad-request r)
+      (res/response r))))
 
 (def service-handler-wrapped (wrap-api-handler service-handler))
+

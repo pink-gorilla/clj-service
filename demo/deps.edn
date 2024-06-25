@@ -1,8 +1,8 @@
 {:paths ["src"
          "resources"]
  :deps
- {org.pinkgorilla/webly {:mvn/version "0.5.655"}
-  org.pinkgorilla/ui-tailwind {:mvn/version "0.0.5"}
+ {org.pinkgorilla/webly {:mvn/version "0.6.691"}
+  org.pinkgorilla/ui-tailwind {:mvn/version "0.1.8"}
   org.pinkgorilla/clj-service {:local/root ".." :deps/manifest :deps}}
 
  :aliases

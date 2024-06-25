@@ -1,10 +1,9 @@
 (ns clj-service.core
   (:require
-   [clojure.set :refer [rename-keys]]
    [taoensso.timbre :as timbre :refer [info error]]
    [extension :refer [write-target-webly get-extensions]]
    [modular.permission.service :refer [add-permissioned-service]]
-   [modular.clj-service.websocket :refer [create-websocket-responder]]))
+   [clj-service.websocket :refer [create-websocket-responder]]))
 
 ;; EXPOSE FUNCTION
 
@@ -22,37 +21,37 @@
    function args: service - fully qualified symbol
                   permission - a set following modular.permission role based access
                   fixed-args - fixed args to be passed to the function executor as the beginning arguments"
-  [this permission-service {:keys [function permission fixed-args]
-                            :or {fixed-args []
-                                 permission nil}}]
+  [{:keys [services permission-service] :as this} {:keys [function permission fixed-args]
+                                                   :or {fixed-args []
+                                                        permission nil}}]
   (assert this "you need to pass the clj-service state")
   (assert permission-service "you need to pass the modular.permission.core state")
   (assert (symbol? function))
   (let [service-fn (resolve-symbol function)]
     (add-permissioned-service permission-service function permission)
-    (swap! this assoc function {:service-fn service-fn
-                                :permission permission
-                                :fixed-args fixed-args})))
+    (swap! services assoc function {:service-fn service-fn
+                                    :permission permission
+                                    :fixed-args fixed-args})))
 
 (defn expose-functions
   "exposes multiple functions with the same permission and fixed-args."
-  [this permission-service
-   {:keys [function-symbols permission fixed-args name]
+  [this
+   {:keys [symbols permission fixed-args name]
     :or {permission nil
          fixed-args []
          name "services"}}]
-  (assert (vector? function-symbols))
-  (info "exposing [" name "]   permission: " permission " functions: " function-symbols)
+  (assert (vector? symbols))
+  (info "exposing [" name "]   permission: " permission " functions: " symbols)
   (doall
    (map (fn [function]
-          (expose-function this permission-service {:function function
-                                                    :permission permission
-                                                    :fixed-args fixed-args})) function-symbols)))
+          (expose-function this {:function function
+                                 :permission permission
+                                 :fixed-args fixed-args})) symbols)))
 
 ; services list
 
-(defn services-list [this]
-  (keys @this))
+(defn services-list [{:keys [services] :as _this}]
+  (keys @services))
 
 ; start service
 
@@ -67,22 +66,19 @@
    non stateless services need to be exposed via expose-service"
   [permission-service exts]
   (info "starting clj-services ..")
-  (let [this (atom {})
+  (let [this {:services (atom {})
+              :permission-service permission-service}
         services (exts->services exts)]
     (write-target-webly :clj-services services)
     ; expose services list (which is stateful)
-    (expose-function this permission-service
-                     {:service-fn 'clj-service.core/services-list
+    (expose-function this
+                     {:function 'clj-service.core/services-list
                       :permission nil
                       :fixed-args [this]})
     ; expose stateless services discovered via extension-manager
     (doall
-     (map (fn [clj-service]
-            (expose-functions
-             this permission-service
-             (rename-keys clj-service {:symbols :function-symbols})))
-          services))
+     (map #(expose-functions this %) services))
     ; create websocket message handler
-    (create-websocket-responder this permission-service)
+    (create-websocket-responder this)
     ; return the service state
     this))

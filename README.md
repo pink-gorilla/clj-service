@@ -13,3 +13,10 @@
   clj -X:run
 
 ```
+
+### tests
+
+```
+  clj -M:test
+```
+

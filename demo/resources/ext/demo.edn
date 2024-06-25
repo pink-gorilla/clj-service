@@ -1,12 +1,15 @@
 {:name "demo"
  ; build
  :lazy true
- :cljs-namespace [demo.page]
- :cljs-ns-bindings {'demo.page {'service-page demo.page/service-page}}
+ :cljs-namespace [demo.page
+                  demo.admin]
+ :cljs-ns-bindings {'demo.page {'service-page demo.page/service-page}
+                    'demo.admin {'help-page demo.admin/help-page}}
  ;runtime
- :cljs-routes {"" demo.page/service-page}
+ :cljs-routes {"" demo.page/service-page
+               "help" demo.admin/help-page}
  :clj-services {:name "demo"
-                :permission  #{}
+                :permission nil
                 :symbols [demo.service/add
                           demo.service/quote
                           demo.service/quote-slow

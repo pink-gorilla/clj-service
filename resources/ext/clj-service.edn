@@ -7,7 +7,7 @@
                                           'run-cb goldly.service.core/run-cb ; depreciate ??
                                           }}
  ; run
-  :api-routes {"clj-service"  {; clj-service allows requests via http post
-                              :post goldly.service.handler/service-handler-wrapped}}
+ :api-routes {"clj-service"  {; clj-service allows requests via http post
+                              :post clj-service.handler/service-handler-wrapped}}
 ; 
-}
+ }
