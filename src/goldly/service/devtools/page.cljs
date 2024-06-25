@@ -13,9 +13,9 @@
    (into [:div.grid.grid-cols-2.md:grid-cols-4]
          (map kw-item (sort list)))])
 
-(defn clj-service-page [{:keys [route-params query-params handler] :as route}]
-  (let [rp (clj 'goldly.service.core/services-list)
+(defn clj-service-page [{:keys [_route-params _query-params _handler] :as _route}]
+  (let [rp (clj 'clj-service.core/services-list)
         a (r/atom [])]
     (p/then rp (fn [r] (reset! a r)))
-   (fn [_]
-     [keyword-list "services" @a])))
+    (fn [_]
+      [keyword-list "services" @a])))

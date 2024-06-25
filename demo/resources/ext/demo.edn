@@ -4,12 +4,11 @@
  :cljs-namespace [demo.page]
  :cljs-ns-bindings {'demo.page {'service-page demo.page/service-page}}
  ;runtime
+ :cljs-routes {"" demo.page/service-page}
  :clj-services {:name "demo"
                 :permission  #{}
                 :symbols [demo.service/add
                           demo.service/quote
                           demo.service/quote-slow
-                          demo.service/ex]}
-
- :cljs-routes {"" demo.page/service-page}}
+                          demo.service/ex]}}
 

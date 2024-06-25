@@ -1,8 +1,5 @@
-(ns demo.service
-  (:require
-   [taoensso.timbre :as timbre :refer [debug]]))
+(ns demo.service)
 
-(debug "namespace demo.service is getting loaded...")
 
 (defn add [a b]
   (+ a b))

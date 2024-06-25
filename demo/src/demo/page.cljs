@@ -2,7 +2,7 @@
   (:require
    [reagent.core :as r]
    [promesa.core :as p]
-   [goldly.service.core :refer [clj clj-atom run-a run-a-map]]))
+   [goldly.service.core :refer [clj]]))
 
 (def state
   (r/atom {}))

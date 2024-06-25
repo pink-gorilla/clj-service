@@ -1,6 +1,5 @@
 (ns build
   (:require
-   [babashka.fs :as fs]
    [clojure.tools.build.api :as b]
    [deps-deploy.deps-deploy :as dd]))
 
