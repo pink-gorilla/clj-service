@@ -25,7 +25,7 @@
           {:keys [fun args]} params
           user (get-user permission-service uid)]
       (future
-        (let [r (execute-with-binding this user fun args)]
+        (let [r (execute-with-binding this user uid fun args)]
           (if (nom/anomaly? r)
             (send-response req :clj/service (error-response user fun args r) )
             (send-response req :clj/service (response r))))))))

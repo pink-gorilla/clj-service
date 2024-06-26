@@ -5,6 +5,11 @@
 
 ;; USER
 
+
+(defonce ^:dynamic
+  ^{:doc "The session-id for which a clj-service gets executed"}
+  *session* nil)
+
 (defonce ^:dynamic
   ^{:doc "The user-id for which a clj-service gets executed"}
   *user* nil)
@@ -40,8 +45,9 @@
                                     :message "No service defined for this symbol."})))
 
 
- (defn execute-with-binding [this user-id fun-symbol args]
-   (binding [*user* user-id]
+ (defn execute-with-binding [this user-id session-id fun-symbol args]
+   (binding [*user* user-id
+             *session* session-id]
      (execute this user-id fun-symbol args)))
 
  
