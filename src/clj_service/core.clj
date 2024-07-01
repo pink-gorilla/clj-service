@@ -80,8 +80,11 @@
                       :permission nil
                       :fixed-args [this]})
     ; expose services from extensions (which are stateless)
+    (info "exposing stateless services from extension..")
     (expose-stateless-services-from-extensions this exts)
+    (info "creating websocket responder..")
     ; create websocket message handler
     (create-websocket-responder this)
+    (info "clj-services running!")
     ; return the service state
     this))
