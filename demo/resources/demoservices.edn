@@ -8,19 +8,8 @@
   :timbre {:start (modular.log/timbre-config!
                    (:timbre/clj (deref (clip/ref :config))))}
 
-  :permission {:start (modular.permission.core/start-permissions
-                       {:demo {:roles #{:logistic}
-                               :password "a231498f6c1f441aa98482ea0b224ffa" ; "1234"
-                               :email ["john@doe.com"]}
-                        :boss {:roles #{:logistic :supervisor :accounting}
-                               :password "a231498f6c1f441aa98482ea0b224ffa" ; "1234"
-                               :email ["boss@doe.com"]}
-                        :florian {:roles #{:logistic}
-                                  :password "a231498f6c1f441aa98482ea0b224ffa" ; 1234
-                                  :email ["hoertlehner@gmail.com"]}
-                        :john {:roles #{:logistic}
-                               :password "a231498f6c1f441aa98482ea0b224ffa" ; "1234"
-                               :email ["john@doe.com"]}})}
+  ; empty users because we get user-identity via oauth2 which is not included here.
+  :permission {:start (modular.permission.core/start-permissions {})}
 
   :clj-service {:start (clj-service.core/start-clj-services
                         (clip/ref :permission)

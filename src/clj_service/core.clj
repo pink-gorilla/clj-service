@@ -60,6 +60,12 @@
        (map :clj-services)
        (remove nil?)))
 
+(defn expose-stateless-services-from-extensions [this exts]
+  (let [services (exts->services exts)]
+    (write-target-webly :clj-services services)
+    (doall
+     (map #(expose-functions this %) services))))
+
 (defn start-clj-services
   "starts the clj-service service.
    exposes stateless services that are discovered via the extension system.
@@ -67,17 +73,14 @@
   [permission-service exts]
   (info "starting clj-services ..")
   (let [this {:services (atom {})
-              :permission-service permission-service}
-        services (exts->services exts)]
-    (write-target-webly :clj-services services)
+              :permission-service permission-service}]
     ; expose services list (which is stateful)
     (expose-function this
                      {:function 'clj-service.core/services-list
                       :permission nil
                       :fixed-args [this]})
-    ; expose stateless services discovered via extension-manager
-    (doall
-     (map #(expose-functions this %) services))
+    ; expose services from extensions (which are stateless)
+    (expose-stateless-services-from-extensions this exts)
     ; create websocket message handler
     (create-websocket-responder this)
     ; return the service state
