@@ -14,7 +14,8 @@
         _ (info "service: "  args)
         this nil
         user nil
-        r  (execute-with-binding this user fun args)]
+        session nil
+        r  (execute-with-binding this user session fun args)]
     (if (nom/anomaly? r)
       (res/bad-request r)
       (res/response r))))

@@ -1,7 +1,7 @@
 {:paths ["src"
          "resources"]
  :deps
- {org.pinkgorilla/webly {:mvn/version "0.7.693"}
+ {org.pinkgorilla/webly {:mvn/version "0.8.704"}
   org.pinkgorilla/ui-tailwind {:mvn/version "0.1.8"}
   org.pinkgorilla/clj-service {:local/root ".." :deps/manifest :deps}}
 
@@ -11,7 +11,7 @@
                       :profile "npm-install"}}
 
   :npm-install {:exec-args {:profile "npm-install"}}
-  :compile {:exec-args {:profile "compile2"}}
+  :compile {:exec-args {:profile "compile"}}
   :release {:exec-args {:profile "release"}}
   :release-adv {:exec-args {:profile "release-adv"}}
   :static {:exec-args {:profile "static"}}

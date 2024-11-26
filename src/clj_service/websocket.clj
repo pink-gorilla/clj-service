@@ -7,7 +7,6 @@
    [modular.permission.session :refer [get-user]]
    [clj-service.executor :refer [execute-with-binding *user*]]))
 
-
 (defn error-response [user fun args r]
   (error "clj-service websocket execution error: " r)
   {:error "Execution exception"
@@ -27,5 +26,5 @@
       (future
         (let [r (execute-with-binding this user uid fun args)]
           (if (nom/anomaly? r)
-            (send-response req :clj/service (error-response user fun args r) )
+            (send-response req :clj/service (error-response user fun args r))
             (send-response req :clj/service (response r))))))))
