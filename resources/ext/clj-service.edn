@@ -9,7 +9,10 @@
                                           'run-cb goldly.service.core/run-cb ; depreciate ??
                                           }}
  ; run
- :api-routes {"clj-service"  {; clj-service allows requests via http post
-                              :post clj-service.handler/service-handler-wrapped}}
+ 
+ :web/routes [["/api/clj-service"
+               {; this handler is not yet working. but since it has an api-route, it is here.
+                :post clj-service.handler/service-handler ; clj-service allows requests via http post
+                :middleware [webserver.middleware.api/wrap-api-handler]}]]
 ; 
  }

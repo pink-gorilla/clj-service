@@ -3,7 +3,6 @@
    [taoensso.timbre :refer [info]]
    [ring.util.response :as res]
    [de.otto.nom.core :as nom]
-   [modular.webserver.middleware.api :refer [wrap-api-handler]]
    [clj-service.executor :refer [execute-with-binding *user*]]))
 
 (defn service-handler
@@ -19,6 +18,4 @@
     (if (nom/anomaly? r)
       (res/bad-request r)
       (res/response r))))
-
-(def service-handler-wrapped (wrap-api-handler service-handler))
 

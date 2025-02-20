@@ -1,12 +1,12 @@
 {:paths ["src"
          "resources"]
  :deps
- {org.pinkgorilla/webly {:mvn/version "0.8.704"}
+ {org.pinkgorilla/webly {:mvn/version "0.9.716"}
   org.pinkgorilla/ui-tailwind {:mvn/version "0.1.8"}
   org.pinkgorilla/clj-service {:local/root ".." :deps/manifest :deps}}
 
  :aliases
- {:webly {:exec-fn webly.app.app/webly-build
+ {:webly {:exec-fn webly.spa/webly-build
           :exec-args {:config [{}]
                       :profile "npm-install"}}
 
