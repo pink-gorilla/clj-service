@@ -1,7 +1,8 @@
 (ns clj-service.core
   (:require
    [taoensso.timbre :as timbre :refer [info error]]
-   [extension :refer [write-target-webly get-extensions]]
+   [extension :refer [get-extensions]]
+   [modular.writer :refer [write-edn-private]]
    [modular.permission.service :refer [add-permissioned-service]]
    [clj-service.websocket :refer [create-websocket-responder]]))
 
@@ -62,7 +63,7 @@
 
 (defn expose-stateless-services-from-extensions [this exts]
   (let [services (exts->services exts)]
-    (write-target-webly :clj-services services)
+    (write-edn-private :clj-services services)
     (doall
      (map #(expose-functions this %) services))))
 

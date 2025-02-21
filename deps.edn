@@ -5,6 +5,7 @@
   de.otto/nom {:mvn/version "0.3.0"}
   org.pinkgorilla/timbre {:mvn/version "0.0.8"}
   org.pinkgorilla/extension {:mvn/version "0.0.14"}
+  org.pinkgorilla/modular {:mvn/version "0.2.67"}
   org.pinkgorilla/permission {:mvn/version "0.2.20"}
   org.pinkgorilla/websocket {:mvn/version "0.0.21"}}
  :aliases
