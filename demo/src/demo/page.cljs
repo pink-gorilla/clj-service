@@ -34,7 +34,6 @@
 (defn clj-quote-slow []
   (clj->atom slow-a {:timeout 1000} 'demo.service/quote-slow))
 
-
 (defn show-page []
   [:div
    [:p.text-big.text-blue-900.text-bold "clj-services tests .."]
@@ -42,7 +41,7 @@
    [:div.bg-green-500.m-5.p-5
     [:button.bg-blue-500 {:on-click #(clj-quote)} "get quote (fast)"]
     [:p "result: " (pr-str @quote-a)]]
-   
+
    [:div.bg-green-500.m-5.p-5
     [:button.bg-blue-500 {:on-click #(clj-add)} "add numbers (clj)"]
     [:p "result: " (pr-str @add-a)]]

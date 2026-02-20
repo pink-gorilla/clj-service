@@ -2,12 +2,20 @@
  ; build
  :lazy true
  :cljs-namespace [demo.page
-                  demo.admin]
+                  demo.admin
+                  demo.app]
  :cljs-ns-bindings {'demo.page {'service-page demo.page/service-page}
-                    'demo.admin {'help-page demo.admin/help-page}}
+                    'demo.admin {'help-page demo.admin/help-page}
+                    'demo.app {'routes demo.app/routes
+                               'wrap-webly demo.app/wrap-webly}}
+ 
+ 
  ;runtime
  :cljs-routes {"" demo.page/service-page
                "help" demo.admin/help-page}
+ 
+ :cljs-routes-reitit demo.app/routes
+
  :clj-services {:name "demo"
                 :permission nil
                 :symbols [demo.service/add

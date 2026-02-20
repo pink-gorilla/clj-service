@@ -1,6 +1,5 @@
 (ns demo.service)
 
-
 (defn add [a b]
   (+ a b))
 
