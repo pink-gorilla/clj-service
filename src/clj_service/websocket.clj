@@ -3,8 +3,8 @@
    [clojure.string]
    [de.otto.nom.core :as nom]
    [taoensso.timbre :as timbre :refer [error]]
-   [modular.ws.msg-handler :refer [-event-msg-handler send-response]]
    [modular.permission.session :refer [get-user]]
+   [modular.ws.msg-handler :refer [-event-msg-handler send-response]]
    [clj-service.executor :refer [execute-with-binding *user*]]))
 
 (defn error-response [user fun args r]

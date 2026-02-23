@@ -1,6 +1,0 @@
-{:name "clj-service-devtools"
- :lazy true
- :cljs-namespace [goldly.service.devtools.page]
- :cljs-ns-bindings {'goldly.service.devtools.page {'clj-service-page goldly.service.devtools.page/clj-service-page}}
- ; run
- :dev-page {"clj-service" goldly.service.devtools.page/clj-service-page}}
