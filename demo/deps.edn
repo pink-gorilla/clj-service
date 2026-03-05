@@ -1,0 +1,20 @@
+{:paths ["src" "ext"]
+ :deps {org.clojure/clojure    {:mvn/version "1.12.4"}
+        org.pinkgorilla/webly {:mvn/version "0.10.730"}
+        ;org.pinkgorilla/webly {:local/root "../../webly/webly" :deps/manifest :deps}
+        org.pinkgorilla/css-theme {:mvn/version "0.1.8"} ; webly spa builder uses them. 
+        org.pinkgorilla/ui-router {:mvn/version "0.2.43"}
+        org.pinkgorilla/clj-service {:local/root "../clj-service" :deps/manifest :deps}
+        nrepl/nrepl {:mvn/version "1.2.0"}}
+
+ :aliases {:npm-install {:exec-fn webly.spa/webly-build
+                         :exec-args {:config ["config.edn"]
+                                     :profile "npm-install"}}
+           :demo {:exec-fn modular.system/start!
+                  :exec-args {:profile "watch"
+                              :config ["/home/florian/repo/myLinux/myvault/goldly/oauth2-localhost.edn" ; oauth2 secrets
+                                       "config.edn"]
+                              :services "services.edn"}}}
+
+;
+ }

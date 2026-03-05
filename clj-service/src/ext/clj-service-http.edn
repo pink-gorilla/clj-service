@@ -1,0 +1,22 @@
+{:name "clj-service-http"
+ :lazy false
+ ; build
+ ; the namespace needs to be changed, because clj-service does not have anythiung to do
+ ; with goldly. however we dont want to break existing code, so it is like that for now.
+ :cljs-namespace [clj-service.http]
+ :cljs-ns-bindings {'clj-service.http {'clj clj-service.http/clj}}
+ ; run
+ :web/routes [["/clj-service"
+               {:post clj-service.http-handler/service-handler ; clj-service allows requests via http post
+                :middleware [ring.middleware.cookies/wrap-cookies
+                             muuntaja.middleware/wrap-format
+                             clj-service.browser-id/browser-id-middleware
+                             token.identity.local/identity-middleware
+                             webserver.middleware.ctx/ctx-middleware
+                             webserver.middleware.api/wrap-api-handler]
+                :services #{:token :clj}}]]
+
+
+; 
+ }
+

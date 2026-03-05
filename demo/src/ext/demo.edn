@@ -1,0 +1,15 @@
+{:name "demo"
+ :lazy true
+ :cljs-namespace [demo.app]
+ :cljs-ns-bindings {'demo.app {'routes demo.app/routes
+                               'wrap-page demo.app/wrap-page}}
+ :cljs-routes-reitit demo.app/routes
+ :clj-service [{:fun demo.time/time-public :permission nil}
+               {:fun demo.time/time-debug :permission nil}
+               {:fun demo.time/time-user :permission  #{}}
+               {:fun demo.time/time-supervisor :permission #{:supervisor}}
+               {:fun demo.fortune-cookie/get-cookie :ctx :cookie-db}
+               
+               ]}
+
+

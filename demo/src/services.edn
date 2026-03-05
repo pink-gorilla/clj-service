@@ -1,0 +1,39 @@
+{:modular (modular.system/modular-env)  ; {:profile "jetty"  :config ["demo.edn" "secrets.edn"]}
+ ;:secrets #include "secrets.edn" ;; externalised and usually "mounted" as a docker/kubernetes secret
+ :components
+ {:config1 {:start (modular.config/load-config! (:config #ref [:modular]))}
+  :config {:start (deref (clip/ref :config1))}
+
+  :timbre {:start (modular.log/timbre-config!
+                   (:timbre/clj (clip/ref :config)))}
+
+  :exts {:start (extension/discover)}
+
+  :token {:start (token.core/start-token-service
+                  {:users (:users (clip/ref :config))
+                   :secret "AbHzj834ri9"
+                   :store-path ".gorilla/tokenstore"
+                   :providers (:oauth2 (:token (clip/ref :config)))
+                   :auth-expiry 604800})}
+
+  :clj {:start (clj-service.core/start-executor
+                     {:exts (clip/ref :exts)
+                      :env {:cookie-db demo.fortune-cookie/db}})}
+    
+  :webly {:start (webly.spa/start-webly
+                  {:exts (clip/ref :exts)
+                   :ctx {:token (clip/ref :token)
+                         :clj (clip/ref :clj)
+                         }}
+                  (clip/ref :config)
+                  (:profile #ref [:modular])
+                  (:version #ref [:modular]))
+          :stop (webly.spa/stop-webly this)}
+
+
+  :nrepl {:start (nrepl.server/start-server :bind "0.0.0.0" :port 9100)
+          :stop (.close this)}
+
+
+;
+  }}

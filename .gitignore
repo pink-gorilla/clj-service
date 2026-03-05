@@ -1,0 +1,11 @@
+demo/.cpcache
+demo/.gorilla
+demo/node_modules
+demo/karma.conf.js
+demo/package.json
+demo/package-lock.json
+demo/shadow-cljs.edn
+demo/.shadow-cljs
+clj-service/.calva
+clj-service/.cpcache
+clj-service/.nrepl-port
