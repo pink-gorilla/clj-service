@@ -45,8 +45,8 @@
               [k (if (var? v) (var-get v) v)]))
        (into {})))
 
-(defn start-executor
-  "starts the executor service 
+(defn start-clj-services
+  "starts the clj-services
    :services - a vec of service-definition maps
    :env - the environment that gets (entirely or modified passed to a service that is stateful)"
   [{:keys [env exts app-services]

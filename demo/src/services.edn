@@ -16,7 +16,7 @@
                    :providers (:oauth2 (:token (clip/ref :config)))
                    :auth-expiry 604800})}
 
-  :clj {:start (clj-service.core/start-executor
+  :clj {:start (clj-service.core/start-clj-services
                      {:exts (clip/ref :exts)
                       :env {:cookie-db demo.fortune-cookie/db}})}
     
