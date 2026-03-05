@@ -3,6 +3,7 @@
    [promesa.core :as p]
    [reagent.core :as r]
    [reitit.frontend.easy :as rfe]
+   [token.core :refer [user-a user-icon-with-login login me]]
    [clj-service.http :refer [clj]]))
 
 (defonce result-a (r/atom "--- no request made yet ---"))
@@ -31,6 +32,7 @@
    ".oauth2-heading { font-size: 1rem; font-weight: 600; color: #2c3e50; margin: 1rem 0 0.5rem 0; } "
    ".oauth2-heading:first-child { margin-top: 0; } "
    ".oauth2-result { margin-top: 0.75rem; padding: 0.75rem; background: #f8f9fa; border-radius: 6px; border: 1px solid #e9ecef; font-size: 0.85rem; color: #495057; overflow-x: auto; } "
+   ".oauth2-result-error { margin-top: 0.75rem; padding: 0.75rem; background: #d4235b; border-radius: 6px; border: 1px solid #e9ecef; font-size: 0.85rem; color: #495057; overflow-x: auto; } "   
    ".oauth2-flex-col { display: flex; flex-direction: column; gap: 0.25rem; } "))
 
 (defn section [title & children]
@@ -52,18 +54,41 @@
     [link-fn #(exec 'demo.time/time-supervisor) "Request time (permission: :supervisor (login as boss))"]
     [link-fn #(exec 'demo.fortune-cookie/get-cookie) "Request fortune-cookie (needs context on server)"]
     [link-fn #(exec 'demo.time/xxx) "Request time (no function defined = error)"]
+    [link-fn #(exec 'demo.time/time-slow) "Request time (takes 10 secs to respond)"]
+    [link-fn #(exec 'demo.time/time-bad) "Request time (throws an exception)"]
     ; result
     [:p.oauth2-text "Result:"]
-    [:pre.oauth2-result (pr-str @result-a)]]])
+    (if (:error @result-a)
+      [:pre.oauth2-result-error (:error @result-a)]
+      [:pre.oauth2-result    (pr-str @result-a)])
+    ]])
+
+(defn section-available-users []
+  [section "Available users"
+   [:p.oauth2-text "Users configured in the demo app:"]
+   [:p.oauth2-text "user: florian — pwd: 1234"]
+   [:p.oauth2-text "user: boss — pwd: 1234"]])
+
+
+(defn section-user-management []
+  (fn []
+    [section "User management"
+     [:h3.oauth2-heading "Login"]
+     [link-fn #(login) "Show login dialog"]
+     [:h3.oauth2-heading "User button"]
+     [user-icon-with-login]
+     [:h3.oauth2-heading "Me"]
+     [:a.oauth2-link {:on-click #(me)} "Open ME"]
+     [:h3.oauth2-heading "User details (debug)"]
+     [:p.oauth2-text (pr-str @user-a)]]))
+
 
 (defn main-page [& opts]
   [:div.oauth2-page
    [:style page-css]
-   [:p "user admin"]
-   [:a {:href "/me"} [:p  "my current user"]]
-   [:a {:href "/login"} [:p  "force login"]]
-   [:p "requests"]
    [:div.oauth2-grid
+    [section-available-users]
+    [section-user-management]
     [section-clj-service]]])
 
 (def routes

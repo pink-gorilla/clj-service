@@ -10,8 +10,8 @@
 (defn- bare-session-request
   [request]
   (let [existing-browser-id  (get-in request [:cookies cookie-name :value])]
-    (info "COOKIES: " (:cookies request))
-    (info "browser-id: " existing-browser-id)
+    ;(info "COOKIES: " (:cookies request))
+    ;(info "browser-id: " existing-browser-id)
     (merge request {:browser-id existing-browser-id})))
 
 (defn session-request
@@ -23,7 +23,7 @@
 (defn- bare-session-response
   [response request]
   (if-let [existing-browser-id (get-in request [:cookies cookie-name :value])]
-    (do (info "response existing-browser-id: " existing-browser-id)
+    (do ;(info "response existing-browser-id: " existing-browser-id)
         response)
     (let [new-browser-id (human-id)
           cookie {cookie-name {:value new-browser-id
@@ -42,7 +42,7 @@
                            (bare-session-response request)
                            cookies/cookies-response)]
 
-      (info "new response: " new-response)
+      ;(info "new response: " new-response)
       new-response)))
 
 (defn wrap-browser-id [handler]

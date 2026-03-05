@@ -16,3 +16,10 @@
   (println "running time-debug user: " *user* " session: " *session*)
   {:user  *user*
    :session *session*})
+
+(defn time-slow []
+  (Thread/sleep 10000)
+  (now-str))
+
+(defn time-bad []
+  (throw (ex-info "the time stands still - no time available!" {:source :time-bad})))

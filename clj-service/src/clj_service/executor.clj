@@ -18,9 +18,11 @@
   (try
     (call-fn service clj-call)
     (catch clojure.lang.ExceptionInfo e
-      (throw (ex-info (str "run " (:fun clj-call) " exception")
-                      {:error (pr-str e)
-                       :clj-call clj-call})))
+      (let [msg (or (ex-message e)
+                    (str "exception running " (:fun clj-call)))]
+        (throw (ex-info msg
+                        {:error (pr-str e)
+                         :clj-call clj-call}))))
     (catch AssertionError  e
       (throw (ex-info (str "run " (:fun clj-call) " assert error")
                       {:error (pr-str e)})))))
@@ -41,7 +43,7 @@
   (let [service (get-service clj clj-call)]
     (if (authorized? service user)
       (run-with-binding setup service clj-call)
-      (throw (ex-info (str "user " user " not authorized for: " fun)
+      (throw (ex-info (str "user " (:user user) " not authorized for: " fun)
                       {:fun fun
-                       user user})))))
+                       :user user})))))
 

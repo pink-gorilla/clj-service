@@ -28,7 +28,18 @@
                           (reject error)
                           (resolve result))))
            :error-handler (fn [err]
-                            (error err)
-                            (reject err))}))))))
+                            ;{:status -1, :status-text "Request timed out.", :failure :timeout}
+                            (error "clj-response " err)
+                            (cond
+                              (= :timeout (:failure err)) ; comes from ajax-post request.
+                              (reject "Request timed out.")
+
+                              (:error err) ; our error format
+                              (reject (:error err))
+
+                              :else ; ???
+                              (reject "unspecified error")
+                              )
+                            )}))))))
 
 
