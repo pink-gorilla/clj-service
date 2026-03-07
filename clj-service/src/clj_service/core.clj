@@ -66,7 +66,7 @@
     this))
 
 (defn get-service [{:keys [services] :as this} {:keys [fun] :as clj-call}]
-  (info "get-service " fun " available:" (keys @services))
+  ;(info "get-service " fun " available:" (keys @services))
   (if-let [s (get @services fun)]
     s
     (throw (ex-info (str "service not found: " fun)
