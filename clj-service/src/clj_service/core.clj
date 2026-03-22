@@ -27,7 +27,7 @@
       fun - fully qualified symbol
       fixed - a fixed args to be passed to a stateful function which is its first parameter"
   [{:keys [services] :as this} {:keys [fun ctx permission] :as service-opts}]
-  (info "exposing fun: " fun " ctx: " ctx " permission: " permission)
+  (debug "exposing fun: " fun " ctx: " ctx " permission: " permission)
   (let [sfn (resolve-symbol fun)
         farg (get-farg this ctx)]
     (swap! services assoc fun (merge service-opts {:sfn sfn
@@ -53,7 +53,7 @@
     :or {exts []
          env {}
          app-services []}}]
-  (info "starting clj-services ..")
+  (info "clj-services starting ..")
   (let [env (env-clean (or env {}))
         this {:env env
               :services (atom {})}
@@ -62,6 +62,7 @@
     (doall
      (for [service services]
        (expose this service)))
+    (info "clj-services started!")
     ; return the service state
     this))
 
