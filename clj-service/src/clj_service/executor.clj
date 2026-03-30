@@ -1,8 +1,11 @@
 (ns clj-service.executor
   (:require
    [taoensso.timbre :refer [error]]
+   [missionary.core :as m]
    [clj-service.core :refer [call-fn get-service]]
-   [clj-service.permission :refer [authorized?]]))
+   [clj-service.permission :refer [authorized?]]
+   [clj-service.response :refer [response-success response-error]]
+   ))
 
 ;; USER
 
@@ -14,25 +17,17 @@
   ^{:doc "The user-id for which a clj-service gets executed"}
   *user* nil)
 
-(defn run-fn [service clj-call]
-  (try
-    (call-fn service clj-call)
-    (catch clojure.lang.ExceptionInfo e
-      (let [msg (or (ex-message e)
-                    (str "exception running " (:fun clj-call)))]
-        (throw (ex-info msg
-                        {:error (pr-str e)
-                         :clj-call clj-call}))))
-    (catch AssertionError  e
-      (throw (ex-info (str "run " (:fun clj-call) " assert error")
-                      {:error (pr-str e)})))))
-
 (defn run-with-binding [{:keys [user session] :as setup}
-                        service
+                        {:keys [mode] :as service}
                         clj-call]
-  (binding [*user* user
-            *session* session]
-    (run-fn service clj-call)))
+  (case mode
+    :clj (m/via m/cpu
+                (binding [*user* user
+                          *session* session]
+                  (call-fn service clj-call)))
+    :sp (call-fn service clj-call)
+    (throw (ex-info (str "unknown mode: " mode) clj-call))))
+
 
 (defn execute
   "executes a service-fn with args + fixed-args
@@ -40,10 +35,27 @@
   [{:keys [clj token] :as ctx}
    {:keys [user session] :as setup}
    {:keys [fun] :as clj-call}]
-  (let [service (get-service clj clj-call)]
-    (if (authorized? service user)
-      (run-with-binding setup service clj-call)
-      (throw (ex-info (str "user " (:user user) " not authorized for: " fun)
-                      {:fun fun
-                       :user user})))))
+  (m/sp
+   (println "executing..")
+   (let [service (get-service clj clj-call)]
+     (println "service received..")
+     (if (authorized? service user)
+       (m/? (run-with-binding setup service clj-call))
+       (throw (ex-info (str "user " (:user user) " not authorized for: " fun)
+                       {:fun fun
+                        :user user}))))))
+
+(defn execute-wrapped [ctx setup clj-call]
+  (m/sp
+   (try
+     (let [r (m/? (execute ctx setup clj-call))]
+       (response-success r))
+     (catch clojure.lang.ExceptionInfo ex
+       (response-error ex))
+     (catch Exception ex
+       (response-error ex))
+     (catch AssertionError e
+       (response-error e)))))
+
+
 

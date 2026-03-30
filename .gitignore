@@ -6,6 +6,7 @@ demo/package.json
 demo/package-lock.json
 demo/shadow-cljs.edn
 demo/.shadow-cljs
+demo/.calva
 clj-service/.calva
 clj-service/.cpcache
 clj-service/.nrepl-port

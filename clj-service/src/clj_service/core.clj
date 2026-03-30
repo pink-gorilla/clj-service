@@ -26,12 +26,15 @@
    service-opts: 
       fun - fully qualified symbol
       fixed - a fixed args to be passed to a stateful function which is its first parameter"
-  [{:keys [services] :as this} {:keys [fun ctx permission] :as service-opts}]
+  [{:keys [services] :as this} {:keys [fun ctx permission mode] :as service-opts}]
   (debug "exposing fun: " fun " ctx: " ctx " permission: " permission)
   (let [sfn (resolve-symbol fun)
-        farg (get-farg this ctx)]
+        farg (get-farg this ctx)
+        mode (or mode :clj)
+        ]
     (swap! services assoc fun (merge service-opts {:sfn sfn
-                                                   :farg farg}))))
+                                                   :farg farg
+                                                   :mode mode}))))
 
 (defn get-ext-services [exts]
   (->> (get-extensions exts {:clj-service []})

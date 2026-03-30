@@ -4,14 +4,20 @@
  :cljs-ns-bindings {'demo.app {'routes demo.app/routes
                                'wrap-page demo.app/wrap-page}}
  :cljs-routes-reitit demo.app/routes
- :clj-service [{:fun demo.time/time-public :permission nil}
-               {:fun demo.time/time-debug :permission nil}
-               {:fun demo.time/time-user :permission  #{}}
-               {:fun demo.time/time-supervisor :permission #{:supervisor}}
-               {:fun demo.time/time-slow :permission nil}
-               {:fun demo.time/time-bad :permission nil}
-               {:fun demo.fortune-cookie/get-cookie :ctx :cookie-db}
-
+ :clj-service [; permission check
+               {:fun demo.time/time-public :permission nil :mode :clj}
+               {:fun demo.time/time-debug :permission nil :mode :clj}
+               {:fun demo.time/time-user :permission  #{} :mode :clj}
+               {:fun demo.time/time-supervisor :permission #{:supervisor} :mode :clj}
+               {:fun demo.time/time-slow :permission nil :mode :clj}
+               {:fun demo.time/time-bad :permission nil :mode :clj}
+               ; context
+               {:fun demo.fortune-cookie/get-cookie :ctx :cookie-db :mode :clj}
+                ; sp
+               {:fun demo.sleepy/happy?  :mode :sp}
+               
+               {:fun demo.sleepy/ex-test  :mode :clj}
+               {:fun demo.sleepy/assert-test :mode :clj}
                
                
                ]}

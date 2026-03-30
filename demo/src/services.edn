@@ -17,14 +17,15 @@
                    :auth-expiry 604800})}
 
   :clj {:start (clj-service.core/start-clj-services
-                     {:exts (clip/ref :exts)
-                      :env {:cookie-db demo.fortune-cookie/db}})}
-    
+                {:exts (clip/ref :exts)
+                 :env {:cookie-db demo.fortune-cookie/db}})}
+
+  :ctx {:start {:token (clip/ref :token)
+                :clj (clip/ref :clj)}}
+
   :webly {:start (webly.spa/start-webly
                   {:exts (clip/ref :exts)
-                   :ctx {:token (clip/ref :token)
-                         :clj (clip/ref :clj)
-                         }}
+                   :ctx (clip/ref :ctx)}
                   (clip/ref :config)
                   (:profile #ref [:modular])
                   (:version #ref [:modular]))

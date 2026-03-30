@@ -1,0 +1,256 @@
+; Connecting ...
+; Reading port file: file:///home/florian/repo/pink-gorilla/clj-service/.nrepl-port ...
+; No nrepl port file found.
+; Hooking up nREPL sessions on port 9100...
+; Connected session: clj, port: 9100
+; Evaluating code from settings: 'calva.autoEvaluateCode.onConnect.clj'
+nil
+clj꞉user꞉> 
+"Please see https://calva.io/output/#about-stdout-in-the-repl-window
+about why stdout printed to this file is prepended with `;` to be line comments."
+clj꞉user꞉> 
+; Execution error (IllegalAccessError) at demo.repo/eval63491$loading (REPL:1).
+; execute-wrapped does not exist
+clj꞉demo.repo꞉> 
+; Evaluating file: executor.clj
+; 
+; ; clj  clj-service.executor 
+; Syntax error compiling at (/home/florian/repo/pink-gorilla/clj-service/clj-service/src/clj_service/executor.clj:28:9).
+; No such namespace: exec
+; Evaluation of file executor.clj failed: class clojure.lang.Compiler$CompilerException
+clj꞉clj-service.executor꞉> 
+nil
+clj꞉clj-service.executor꞉> 
+nil
+clj꞉clj-service.executor꞉> 
+nil
+clj꞉clj-service.executor꞉> 
+; Syntax error compiling at (/home/florian/repo/pink-gorilla/clj-service/clj-service/src/clj_service/executor.clj:28:9).
+; No such namespace: exec
+clj꞉clj-service.executor꞉> 
+; Syntax error compiling throw at (/home/florian/repo/pink-gorilla/clj-service/clj-service/src/clj_service/executor.clj:29:5).
+; Too many arguments to throw, throw expects a single Throwable instance
+clj꞉clj-service.executor꞉> 
+#'clj-service.executor/run-with-binding
+clj꞉clj-service.executor꞉> 
+#'clj-service.executor/execute
+clj꞉clj-service.executor꞉> 
+; Syntax error macroexpanding cloroutine.core/cr at (/home/florian/repo/pink-gorilla/clj-service/clj-service/src/clj_service/executor.clj:47:3).
+; Could not resolve var: resonse-error
+clj꞉clj-service.executor꞉> 
+#'clj-service.executor/execute-wrapped
+clj꞉clj-service.executor꞉> 
+nil
+clj꞉demo.repo꞉> 
+#'demo.repo/ctx
+clj꞉demo.repo꞉> 
+{:error {:message "Cannot invoke \"java.util.concurrent.Future.get()\" because \"fut\" is null", :class "java.lang.NullPointerException", :data nil, :stacktrace [{:class "clojure.core$deref_future", :method "invokeStatic", :file "core.clj", :line 2317} {:class "clojure.core$deref", :method "invokeStatic", :file "core.clj", :line 2337} {:class "clojure.core$deref", :method "invoke", :file "core.clj", :line 2323} {:class "clj_service.core$get_service", :method "invokeStatic", :file "core.clj", :line 71} {:class "clj_service.core$get_service", :method "invoke", :file "core.clj", :line 69} {:class "clj_service.executor$execute$cr63561_block_0__63562", :method "invoke", :file "NO_SOURCE_FILE", :line 39} {:class "cloroutine.impl$coroutine$fn__19663", :method "invoke", :file "impl.cljc", :line 61} {:class "missionary.impl.Sequential", :method "step", :file "Sequential.java", :line 88} {:class "missionary.impl.Sequential", :method "run", :file "Sequential.java", :line 125} {:class "missionary.core$sp_run", :method "invokeStatic", :file "core.cljc", :line 242} {:class "missionary.core$sp_run", :method "invoke", :file "core.cljc", :line 241} {:class "cloroutine.impl$coroutine$fn__19663", :method "invoke", :file "impl.cljc", :line 66} {:class "clojure.core$partial$fn__5929", :method "invoke", :file "core.clj", :line 2642} {:class "missionary.impl.Sequential", :method "suspend", :file "Sequential.java", :line 74} {:class "missionary.impl.Sequential$Process", :method "park", :file "Sequential.java", :line 40} {:class "missionary.impl.Fiber", :method "park", :file "Fiber.java", :line 85} {:class "missionary.core$park", :method "invokeStatic", :file "core.cljc", :line 229} {:class "missionary.core$park", :method "invoke", :file "core.cljc", :line 228} {:class "clj_service.executor$execute_wrapped$cr63575_block_1__63602", :method "invoke", :file "NO_SOURCE_FILE", :line 47} {:class "cloroutine.impl$coroutine$fn__19663", :method "invoke", :file "impl.cljc", :line 61} {:class "missionary.impl.Sequential", :method "step", :file "Sequential.java", :line 88} {:class "missionary.impl.Sequential", :method "run", :file "Sequential.java", :line 125} {:class "missionary.core$sp_run", :method "invokeStatic", :file "core.cljc", :line 242} {:class "missionary.core$sp_run", :method "invoke", :file "core.cljc", :line 241} {:class "cloroutine.impl$coroutine$fn__19663", :method "invoke", :file "impl.cljc", :line 66} {:class "clojure.core$partial$fn__5929", :method "invoke", :file "core.clj", :line 2642} {:class "missionary.impl.Fiber$1$1", :method "<init>", :file "Fiber.java", :line 22} {:class "missionary.impl.Fiber$1", :method "park", :file "Fiber.java", :line 18} {:class "missionary.impl.Fiber", :method "park", :file "Fiber.java", :line 85} {:class "missionary.core$park", :method "invokeStatic", :file "core.cljc", :line 229} {:class "missionary.core$park", :method "invoke", :file "core.cljc", :line 228} {:class "demo.repo$eval63626", :method "invokeStatic", :file "NO_SOURCE_FILE", :line 11} {:class "demo.repo$eval63626", :method "invoke", :file "NO_SOURCE_FILE", :line 11} {:class "clojure.lang.Compiler", :method "eval", :file "Compiler.java", :line 7757} {:class "clojure.lang.Compiler", :method "eval", :file "Compiler.java", :line 7712} {:class "clojure.core$eval", :method "invokeStatic", :file "core.clj", :line 3232} {:class "clojure.core$eval", :method "invoke", :file "core.clj", :line 3228} {:class "nrepl.middleware.interruptible_eval$evaluate$fn__57163$fn__57164", :method "invoke", :file "interruptible_eval.clj", :line 87} {:class "clojure.lang.AFn", :method "applyToHelper", :file "AFn.java", :line 152} {:class "clojure.lang.AFn", :method "applyTo", :file "AFn.java", :line 144} {:class "clojure.core$apply", :method "invokeStatic", :file "core.clj", :line 667} {:class "clojure.core$with_bindings_STAR_", :method "invokeStatic", :file "core.clj", :line 1990} {:class "clojure.core$with_bindings_STAR_", :method "doInvoke", :file "core.clj", :line 1990} {:class "clojure.lang.RestFn", :method "invoke", :file "RestFn.java", :line 428} {:class "nrepl.middleware.interruptible_eval$evaluate$fn__57163", :method "invoke", :file "interruptible_eval.clj", :line 87} {:class "clojure.main$repl$read_eval_print__9248$fn__9251", :method "invoke", :file "main.clj", :line 437} {:class "clojure.main$repl$read_eval_print__9248", :method "invoke", :file "main.clj", :line 437} {:class "clojure.main$repl$fn__9257", :method "invoke", :file "main.clj", :line 459} {:class "clojure.main$repl", :method "invokeStatic", :file "main.clj", :line 459} {:class "clojure.main$repl", :method "doInvoke", :file "main.clj", :line 368} {:class "clojure.lang.RestFn", :method "invoke", :file "RestFn.java", :line 1526} {:class "nrepl.middleware.interruptible_eval$evaluate", :method "invokeStatic", :file "interruptible_eval.clj", :line 84} {:class "nrepl.middleware.interruptible_eval$evaluate", :method "invoke", :file "interruptible_eval.clj", :line 56} {:class "nrepl.middleware.interruptible_eval$interruptible_eval$fn__57196$fn__57200", :method "invoke", :file "interruptible_eval.clj", :line 152} {:class "clojure.lang.AFn", :method "run", :file "AFn.java", :line 22} {:class "nrepl.middleware.session$session_exec$main_loop__57456$fn__57460", :method "invoke", :file "session.clj", :line 218} {:class "nrepl.middleware.session$session_exec$main_loop__57456", :method "invoke", :file "session.clj", :line 217} {:class "clojure.lang.AFn", :method "run", :file "AFn.java", :line 22} {:class "java.lang.Thread", :method "run", :file "Thread.java", :line 1583}]}}
+clj꞉demo.repo꞉> 
+{:error {:message "Cannot invoke \"java.util.concurrent.Future.get()\" because \"fut\" is null", :class "java.lang.NullPointerException", :data nil, :stacktrace [{:class "clojure.core$deref_future", :method "invokeStatic", :file "core.clj", :line 2317} {:class "clojure.core$deref", :method "invokeStatic", :file "core.clj", :line 2337} {:class "clojure.core$deref", :method "invoke", :file "core.clj", :line 2323} {:class "clj_service.core$get_service", :method "invokeStatic", :file "core.clj", :line 71} {:class "clj_service.core$get_service", :method "invoke", :file "core.clj", :line 69} {:class "clj_service.executor$execute$cr63561_block_0__63562", :method "invoke", :file "NO_SOURCE_FILE", :line 39} {:class "cloroutine.impl$coroutine$fn__19663", :method "invoke", :file "impl.cljc", :line 61} {:class "missionary.impl.Sequential", :method "step", :file "Sequential.java", :line 88} {:class "missionary.impl.Sequential", :method "run", :file "Sequential.java", :line 125} {:class "missionary.core$sp_run", :method "invokeStatic", :file "core.cljc", :line 242} {:class "missionary.core$sp_run", :method "invoke", :file "core.cljc", :line 241} {:class "cloroutine.impl$coroutine$fn__19663", :method "invoke", :file "impl.cljc", :line 66} {:class "clojure.core$partial$fn__5929", :method "invoke", :file "core.clj", :line 2642} {:class "missionary.impl.Sequential", :method "suspend", :file "Sequential.java", :line 74} {:class "missionary.impl.Sequential$Process", :method "park", :file "Sequential.java", :line 40} {:class "missionary.impl.Fiber", :method "park", :file "Fiber.java", :line 85} {:class "missionary.core$park", :method "invokeStatic", :file "core.cljc", :line 229} {:class "missionary.core$park", :method "invoke", :file "core.cljc", :line 228} {:class "clj_service.executor$execute_wrapped$cr63575_block_1__63602", :method "invoke", :file "NO_SOURCE_FILE", :line 47} {:class "cloroutine.impl$coroutine$fn__19663", :method "invoke", :file "impl.cljc", :line 61} {:class "missionary.impl.Sequential", :method "step", :file "Sequential.java", :line 88} {:class "missionary.impl.Sequential", :method "run", :file "Sequential.java", :line 125} {:class "missionary.core$sp_run", :method "invokeStatic", :file "core.cljc", :line 242} {:class "missionary.core$sp_run", :method "invoke", :file "core.cljc", :line 241} {:class "cloroutine.impl$coroutine$fn__19663", :method "invoke", :file "impl.cljc", :line 66} {:class "clojure.core$partial$fn__5929", :method "invoke", :file "core.clj", :line 2642} {:class "missionary.impl.Fiber$1$1", :method "<init>", :file "Fiber.java", :line 22} {:class "missionary.impl.Fiber$1", :method "park", :file "Fiber.java", :line 18} {:class "missionary.impl.Fiber", :method "park", :file "Fiber.java", :line 85} {:class "missionary.core$park", :method "invokeStatic", :file "core.cljc", :line 229} {:class "missionary.core$park", :method "invoke", :file "core.cljc", :line 228} {:class "demo.repo$eval63628", :method "invokeStatic", :file "NO_SOURCE_FILE", :line 10} {:class "demo.repo$eval63628", :method "invoke", :file "NO_SOURCE_FILE", :line 10} {:class "clojure.lang.Compiler", :method "eval", :file "Compiler.java", :line 7757} {:class "clojure.lang.Compiler", :method "eval", :file "Compiler.java", :line 7712} {:class "clojure.core$eval", :method "invokeStatic", :file "core.clj", :line 3232} {:class "clojure.core$eval", :method "invoke", :file "core.clj", :line 3228} {:class "nrepl.middleware.interruptible_eval$evaluate$fn__57163$fn__57164", :method "invoke", :file "interruptible_eval.clj", :line 87} {:class "clojure.lang.AFn", :method "applyToHelper", :file "AFn.java", :line 152} {:class "clojure.lang.AFn", :method "applyTo", :file "AFn.java", :line 144} {:class "clojure.core$apply", :method "invokeStatic", :file "core.clj", :line 667} {:class "clojure.core$with_bindings_STAR_", :method "invokeStatic", :file "core.clj", :line 1990} {:class "clojure.core$with_bindings_STAR_", :method "doInvoke", :file "core.clj", :line 1990} {:class "clojure.lang.RestFn", :method "invoke", :file "RestFn.java", :line 428} {:class "nrepl.middleware.interruptible_eval$evaluate$fn__57163", :method "invoke", :file "interruptible_eval.clj", :line 87} {:class "clojure.main$repl$read_eval_print__9248$fn__9251", :method "invoke", :file "main.clj", :line 437} {:class "clojure.main$repl$read_eval_print__9248", :method "invoke", :file "main.clj", :line 437} {:class "clojure.main$repl$fn__9257", :method "invoke", :file "main.clj", :line 459} {:class "clojure.main$repl", :method "invokeStatic", :file "main.clj", :line 459} {:class "clojure.main$repl", :method "doInvoke", :file "main.clj", :line 368} {:class "clojure.lang.RestFn", :method "invoke", :file "RestFn.java", :line 1526} {:class "nrepl.middleware.interruptible_eval$evaluate", :method "invokeStatic", :file "interruptible_eval.clj", :line 84} {:class "nrepl.middleware.interruptible_eval$evaluate", :method "invoke", :file "interruptible_eval.clj", :line 56} {:class "nrepl.middleware.interruptible_eval$interruptible_eval$fn__57196$fn__57200", :method "invoke", :file "interruptible_eval.clj", :line 152} {:class "clojure.lang.AFn", :method "run", :file "AFn.java", :line 22} {:class "nrepl.middleware.session$session_exec$main_loop__57456$fn__57460", :method "invoke", :file "session.clj", :line 218} {:class "nrepl.middleware.session$session_exec$main_loop__57456", :method "invoke", :file "session.clj", :line 217} {:class "clojure.lang.AFn", :method "run", :file "AFn.java", :line 22} {:class "java.lang.Thread", :method "run", :file "Thread.java", :line 1583}]}}
+clj꞉demo.repo꞉> 
+{:error {:message "Cannot invoke \"java.util.concurrent.Future.get()\" because \"fut\" is null", :class "java.lang.NullPointerException", :data nil, :stacktrace [{:class "clojure.core$deref_future", :method "invokeStatic", :file "core.clj", :line 2317} {:class "clojure.core$deref", :method "invokeStatic", :file "core.clj", :line 2337} {:class "clojure.core$deref", :method "invoke", :file "core.clj", :line 2323} {:class "clj_service.core$get_service", :method "invokeStatic", :file "core.clj", :line 71} {:class "clj_service.core$get_service", :method "invoke", :file "core.clj", :line 69} {:class "clj_service.executor$execute$cr63561_block_0__63562", :method "invoke", :file "NO_SOURCE_FILE", :line 39} {:class "cloroutine.impl$coroutine$fn__19663", :method "invoke", :file "impl.cljc", :line 61} {:class "missionary.impl.Sequential", :method "step", :file "Sequential.java", :line 88} {:class "missionary.impl.Sequential", :method "run", :file "Sequential.java", :line 125} {:class "missionary.core$sp_run", :method "invokeStatic", :file "core.cljc", :line 242} {:class "missionary.core$sp_run", :method "invoke", :file "core.cljc", :line 241} {:class "cloroutine.impl$coroutine$fn__19663", :method "invoke", :file "impl.cljc", :line 66} {:class "clojure.core$partial$fn__5929", :method "invoke", :file "core.clj", :line 2642} {:class "missionary.impl.Sequential", :method "suspend", :file "Sequential.java", :line 74} {:class "missionary.impl.Sequential$Process", :method "park", :file "Sequential.java", :line 40} {:class "missionary.impl.Fiber", :method "park", :file "Fiber.java", :line 85} {:class "missionary.core$park", :method "invokeStatic", :file "core.cljc", :line 229} {:class "missionary.core$park", :method "invoke", :file "core.cljc", :line 228} {:class "clj_service.executor$execute_wrapped$cr63575_block_1__63602", :method "invoke", :file "NO_SOURCE_FILE", :line 47} {:class "cloroutine.impl$coroutine$fn__19663", :method "invoke", :file "impl.cljc", :line 61} {:class "missionary.impl.Sequential", :method "step", :file "Sequential.java", :line 88} {:class "missionary.impl.Sequential", :method "run", :file "Sequential.java", :line 125} {:class "missionary.core$sp_run", :method "invokeStatic", :file "core.cljc", :line 242} {:class "missionary.core$sp_run", :method "invoke", :file "core.cljc", :line 241} {:class "cloroutine.impl$coroutine$fn__19663", :method "invoke", :file "impl.cljc", :line 66} {:class "clojure.core$partial$fn__5929", :method "invoke", :file "core.clj", :line 2642} {:class "missionary.impl.Fiber$1$1", :method "<init>", :file "Fiber.java", :line 22} {:class "missionary.impl.Fiber$1", :method "park", :file "Fiber.java", :line 18} {:class "missionary.impl.Fiber", :method "park", :file "Fiber.java", :line 85} {:class "missionary.core$park", :method "invokeStatic", :file "core.cljc", :line 229} {:class "missionary.core$park", :method "invoke", :file "core.cljc", :line 228} {:class "demo.repo$eval63630", :method "invokeStatic", :file "NO_SOURCE_FILE", :line 17} {:class "demo.repo$eval63630", :method "invoke", :file "NO_SOURCE_FILE", :line 17} {:class "clojure.lang.Compiler", :method "eval", :file "Compiler.java", :line 7757} {:class "clojure.lang.Compiler", :method "eval", :file "Compiler.java", :line 7712} {:class "clojure.core$eval", :method "invokeStatic", :file "core.clj", :line 3232} {:class "clojure.core$eval", :method "invoke", :file "core.clj", :line 3228} {:class "nrepl.middleware.interruptible_eval$evaluate$fn__57163$fn__57164", :method "invoke", :file "interruptible_eval.clj", :line 87} {:class "clojure.lang.AFn", :method "applyToHelper", :file "AFn.java", :line 152} {:class "clojure.lang.AFn", :method "applyTo", :file "AFn.java", :line 144} {:class "clojure.core$apply", :method "invokeStatic", :file "core.clj", :line 667} {:class "clojure.core$with_bindings_STAR_", :method "invokeStatic", :file "core.clj", :line 1990} {:class "clojure.core$with_bindings_STAR_", :method "doInvoke", :file "core.clj", :line 1990} {:class "clojure.lang.RestFn", :method "invoke", :file "RestFn.java", :line 428} {:class "nrepl.middleware.interruptible_eval$evaluate$fn__57163", :method "invoke", :file "interruptible_eval.clj", :line 87} {:class "clojure.main$repl$read_eval_print__9248$fn__9251", :method "invoke", :file "main.clj", :line 437} {:class "clojure.main$repl$read_eval_print__9248", :method "invoke", :file "main.clj", :line 437} {:class "clojure.main$repl$fn__9257", :method "invoke", :file "main.clj", :line 459} {:class "clojure.main$repl", :method "invokeStatic", :file "main.clj", :line 459} {:class "clojure.main$repl", :method "doInvoke", :file "main.clj", :line 368} {:class "clojure.lang.RestFn", :method "invoke", :file "RestFn.java", :line 1526} {:class "nrepl.middleware.interruptible_eval$evaluate", :method "invokeStatic", :file "interruptible_eval.clj", :line 84} {:class "nrepl.middleware.interruptible_eval$evaluate", :method "invoke", :file "interruptible_eval.clj", :line 56} {:class "nrepl.middleware.interruptible_eval$interruptible_eval$fn__57196$fn__57200", :method "invoke", :file "interruptible_eval.clj", :line 152} {:class "clojure.lang.AFn", :method "run", :file "AFn.java", :line 22} {:class "nrepl.middleware.session$session_exec$main_loop__57456$fn__57460", :method "invoke", :file "session.clj", :line 218} {:class "nrepl.middleware.session$session_exec$main_loop__57456", :method "invoke", :file "session.clj", :line 217} {:class "clojure.lang.AFn", :method "run", :file "AFn.java", :line 22} {:class "java.lang.Thread", :method "run", :file "Thread.java", :line 1583}]}}
+clj꞉demo.repo꞉> 
+nil
+clj꞉demo.repo꞉> 
+; Execution error (NullPointerException) at clj-service.core/get-service (core.clj:71).
+; Cannot invoke "java.util.concurrent.Future.get()" because "fut" is null
+clj꞉demo.repo꞉> 
+; nREPL Connection was closed for client: nrepl-client-1, port: 9100
+; Connecting using "deps.edn" project type.
+; Connecting ...
+; Reading port file: file:///home/florian/repo/pink-gorilla/clj-service/.nrepl-port ...
+; No nrepl port file found.
+; Hooking up nREPL sessions on port 9100...
+; Connected session: clj, port: 9100
+; Evaluating code from settings: 'calva.autoEvaluateCode.onConnect.clj'
+nil
+clj꞉user꞉> 
+; Execution error (IllegalAccessError) at demo.repo/eval63491$loading (REPL:1).
+; execute-wrapped does not exist
+clj꞉demo.repo꞉> 
+; Evaluating file: executor.clj
+#'clj-service.executor/execute-wrapped
+clj꞉clj-service.executor꞉> 
+nil
+clj꞉demo.repo꞉> 
+#'demo.repo/ctx
+clj꞉demo.repo꞉> 
+; Execution error (NullPointerException) at clj-service.core/get-service (core.clj:71).
+; Cannot invoke "java.util.concurrent.Future.get()" because "fut" is null
+clj꞉demo.repo꞉> 
+#'clj-service.executor/execute
+clj꞉clj-service.executor꞉> 
+; executing..
+; Execution error (NullPointerException) at clj-service.core/get-service (core.clj:71).
+; Cannot invoke "java.util.concurrent.Future.get()" because "fut" is null
+clj꞉demo.repo꞉> 
+#'clj-service.executor/execute
+clj꞉clj-service.executor꞉> 
+; executing..
+; Execution error (NullPointerException) at clj-service.core/get-service (core.clj:71).
+; Cannot invoke "java.util.concurrent.Future.get()" because "fut" is null
+clj꞉demo.repo꞉> 
+#'demo.repo/ctx
+clj꞉demo.repo꞉> 
+nil
+clj꞉demo.repo꞉> 
+#'demo.repo/ctx
+clj꞉demo.repo꞉> 
+nil
+clj꞉demo.repo꞉> 
+nil
+clj꞉demo.repo꞉> 
+nil
+clj꞉demo.repo꞉> 
+nil
+clj꞉demo.repo꞉> 
+; nREPL Connection was closed for client: nrepl-client-2, port: 9100
+; Connecting using "deps.edn" project type.
+; Connecting ...
+; Reading port file: file:///home/florian/repo/pink-gorilla/clj-service/.nrepl-port ...
+; No nrepl port file found.
+; Hooking up nREPL sessions on port 9100...
+; nREPL connection failed, port 9100: AggregateError
+; Failed connecting.
+; Hooking up nREPL sessions on port 9100...
+; nREPL connection failed, port 9100: AggregateError
+; Failed connecting.
+; Hooking up nREPL sessions on port 9100...
+; nREPL connection failed, port 9100: AggregateError
+; Failed connecting.
+; Connect aborted.
+; Connecting using "deps.edn" project type.
+; Connecting ...
+; Reading port file: file:///home/florian/repo/pink-gorilla/clj-service/.nrepl-port ...
+; No nrepl port file found.
+; Hooking up nREPL sessions on port 9100...
+; Connected session: clj, port: 9100
+; Evaluating code from settings: 'calva.autoEvaluateCode.onConnect.clj'
+nil
+clj꞉user꞉> 
+nil
+clj꞉demo.repo꞉> 
+#'demo.repo/ctx
+clj꞉demo.repo꞉> 
+#'demo.repo/ctx
+clj꞉demo.repo꞉> 
+{:token {:users {:users #object[clojure.lang.Atom 0x569b9c18 {:status :ready, :val {:demo {:roles #{:logistic}, :password "a231498f6c1f441aa98482ea0b224ffa", :email ["john@doe.com"], :id :demo}, :boss {:roles #{:logistic :accounting :supervisor}, :password "a231498f6c1f441aa98482ea0b224ffa", :email ["boss@doe.com"], :id :boss}, :florian {:roles #{:logistic}, :password "a231498f6c1f441aa98482ea0b224ffa", :email ["hoertlehner@gmail.com"], :id :florian}, :john {:roles #{:logistic}, :password "a231498f6c1f441aa98482ea0b224ffa", :email ["john@doe.com"], :id :john}}}], :services #object[clojure.lang.Atom 0x706ba28 {:status :ready, :val {}}], :sessions #object[clojure.lang.Atom 0x717d053e {:status :ready, :val {}}]}, :secret "AbHzj834ri9", :store-path ".gorilla/tokenstore", :providers {:google {:client-id "8777197473-d8qju1k2e2o1hklfouht1v0m36imgbrv.apps.googleusercontent.com", :client-secret "3ryYB5JN7DrxbE3lMg2qfIIc"}, :github {:client-id "25928b07df85fb46bf15", :client-secret "d11dae2b04c513cbd23ed4edbda501df326f4fe5"}, :xero {:client-id "1D4E51C32405451CBBA32C112909A7B8", :client-secret "SnK8eG0M7psGbNSy1r4FH1sIw8ceiz6OoBtgA-SAkVmZFRML"}}, :auth-expiry 604800}, :clj {:env {:cookie-db ["The early bird gets the worm, but the second mouse gets the cheese." "Be on the alert to recognize your prime at whatever time of your life it may occur." "Your road to glory will be rocky, but fulfilling." "Courage is not simply one of the virtues, but the form of every virtue at the testing point." "Patience is your alley at the moment. Don't worry!" "Nothing is impossible to a willing heart." "Don’t worry about money. The best things in life are free." "Don’t pursue happiness – create it." "Courage is not the absence of fear; it is the conquest of it." "Nothing is so much to be feared as fear." "All things are difficult before they are easy." "The real kindness comes from within you." "A ship in harbor is safe, but that’s not why ships are built." "You don’t need strength to let go of something. What you really need is understanding." "If you want the rainbow, you have to tolerate the rain." "Fear is interest paid on a debt you may not owe." "Hardly anyone knows how much is gained by ignoring the future." "The wise man is the one that makes you think that he is dumb." "The usefulness of a cup is in its emptiness." "He who throws mud loses ground." "Success lies in the hands of those who wants it." "To avoid criticism, do nothing, say nothing, be nothing." "One that would have the fruit must climb the tree." "It takes less time to do a thing right than it does to explain why you did it wrong." "Big journeys begin with a single step." "Of all our human resources, the most precious is the desire to improve." "Do the thing you fear and the death of fear is certain." "You never show your vulnerability, you are always self assured and confident." "People learn little from success, but much from failure." "Be not afraid of growing slowly, be afraid only of standing still." "We must always have old memories and young hopes." "A person who won’t read has no advantage over a person who can’t read." "He who expects no gratitude shall never be disappointed." "I hear and I forget. I see and I remember. I do and I understand." "The best way to get rid of an enemy is to make a friend." "It’s amazing how much good you can do if you don’t care who gets the credit." "Never forget that a half truth is a whole lie." "Happiness isn’t an outside job, it’s an inside job." "If you do no run your subconscious mind yourself, someone else will." "Yes by calling full, you created emptiness."]}, :services #object[clojure.lang.Atom 0x97767eb {:status :ready, :val {demo.time/time-public {:fun demo.time/time-public, :permission nil, :mode :clj, :sfn #'demo.time/time-public, :farg []}, demo.time/time-debug {:fun demo.time/time-debug, :permission nil, :mode :clj, :sfn #'demo.time/time-debug, :farg []}, demo.time/time-user {:fun demo.time/time-user, :permission #{}, :mode :clj, :sfn #'demo.time/time-user, :farg []}, demo.time/time-supervisor {:fun demo.time/time-supervisor, :permission #{:supervisor}, :mode :clj, :sfn #'demo.time/time-supervisor, :farg []}, demo.time/time-slow {:fun demo.time/time-slow, :permission nil, :mode :clj, :sfn #'demo.time/time-slow, :farg []}, demo.time/time-bad {:fun demo.time/time-bad, :permission nil, :mode :clj, :sfn #'demo.time/time-bad, :farg []}, demo.fortune-cookie/get-cookie {:fun demo.fortune-cookie/get-cookie, :ctx :cookie-db, :mode :clj, :sfn #'demo.fortune-cookie/get-cookie, :farg [["The early bird gets the worm, but the second mouse gets the cheese." "Be on the alert to recognize your prime at whatever time of your life it may occur." "Your road to glory will be rocky, but fulfilling." "Courage is not simply one of the virtues, but the form of every virtue at the testing point." "Patience is your alley at the moment. Don't worry!" "Nothing is impossible to a willing heart." "Don’t worry about money. The best things in life are free." "Don’t pursue happiness – create it." "Courage is not the absence of fear; it is the conquest of it." "Nothing is so much to be feared as fear." "All things are difficult before they are easy." "The real kindness comes from within you." "A ship in harbor is safe, but that’s not why ships are built." "You don’t need strength to let go of something. What you really need is understanding." "If you want the rainbow, you have to tolerate the rain." "Fear is interest paid on a debt you may not owe." "Hardly anyone knows how much is gained by ignoring the future." "The wise man is the one that makes you think that he is dumb." "The usefulness of a cup is in its emptiness." "He who throws mud loses ground." "Success lies in the hands of those who wants it." "To avoid criticism, do nothing, say nothing, be nothing." "One that would have the fruit must climb the tree." "It takes less time to do a thing right than it does to explain why you did it wrong." "Big journeys begin with a single step." "Of all our human resources, the most precious is the desire to improve." "Do the thing you fear and the death of fear is certain." "You never show your vulnerability, you are always self assured and confident." "People learn little from success, but much from failure." "Be not afraid of growing slowly, be afraid only of standing still." "We must always have old memories and young hopes." "A person who won’t read has no advantage over a person who can’t read." "He who expects no gratitude shall never be disappointed." "I hear and I forget. I see and I remember. I do and I understand." "The best way to get rid of an enemy is to make a friend." "It’s amazing how much good you can do if you don’t care who gets the credit." "Never forget that a half truth is a whole lie." "Happiness isn’t an outside job, it’s an inside job." "If you do no run your subconscious mind yourself, someone else will." "Yes by calling full, you created emptiness."]]}, demo.sleepy/happy? {:fun demo.sleepy/happy?, :mode :sp, :sfn #'demo.sleepy/happy?, :farg []}}}]}}
+clj꞉demo.repo꞉> 
+; executing..
+; service received..
+"Don’t worry about money. The best things in life are free."
+clj꞉demo.repo꞉> 
+; executing..
+; service received..
+"Courage is not simply one of the virtues, but the form of every virtue at the testing point."
+clj꞉demo.repo꞉> 
+; executing..
+; service received..
+"Be on the alert to recognize your prime at whatever time of your life it may occur."
+clj꞉demo.repo꞉> 
+; executing..
+; service received..
+"The early bird gets the worm, but the second mouse gets the cheese."
+clj꞉demo.repo꞉> 
+; executing..
+; service received..
+"To avoid criticism, do nothing, say nothing, be nothing."
+clj꞉demo.repo꞉> 
+; executing..
+; service received..
+"A ship in harbor is safe, but that’s not why ships are built."
+clj꞉demo.repo꞉> 
+; executing..
+; service received..
+"Don’t pursue happiness – create it."
+clj꞉demo.repo꞉> 
+; executing..
+; service received..
+"Fear is interest paid on a debt you may not owe."
+clj꞉demo.repo꞉> 
+; executing..
+; service received..
+"Hardly anyone knows how much is gained by ignoring the future."
+clj꞉demo.repo꞉> 
+; executing..
+; service received..
+"The wise man is the one that makes you think that he is dumb."
+clj꞉demo.repo꞉> 
+; executing..
+; service received..
+"You don’t need strength to let go of something. What you really need is understanding."
+clj꞉demo.repo꞉> 
+; executing..
+; service received..
+"The early bird gets the worm, but the second mouse gets the cheese."
+clj꞉demo.repo꞉> 
+; executing..
+; service received..
+"Don’t pursue happiness – create it."
+clj꞉demo.repo꞉> 
+; executing..
+; service received..
+{:result "I am happy!"}
+clj꞉demo.repo꞉> 
+; executing..
+; service received..
+{:result "I am happy!"}
+clj꞉demo.repo꞉> 
+; executing..
+; service received..
+{:result "I am happy!"}
+clj꞉demo.repo꞉> 
+; executing..
+; service received..
+{:result "I am happy!"}
+clj꞉demo.repo꞉> 
+; executing..
+; service received..
+{:result "I am happy!"}
+clj꞉demo.repo꞉> 
+; executing..
+; service received..
+{:result "I am happy!"}
+clj꞉demo.repo꞉> 
+; executing..
+; service received..
+{:result "I am happy!"}
+clj꞉demo.repo꞉> 
+; executing..
+; service received..
+{:result "I am happy!"}
+clj꞉demo.repo꞉> 
+; executing..
+; service received..
+{:result "I am happy!"}
+clj꞉demo.repo꞉> 
+; executing..
+; service received..
+{:result "I am happy!"}
+clj꞉demo.repo꞉> 
+; nREPL Connection was closed for client: nrepl-client-6, port: 9100
+; Connecting using "deps.edn" project type.
+; Connecting ...
+; Reading port file: file:///home/florian/repo/pink-gorilla/clj-service/.nrepl-port ...
+; No nrepl port file found.
+; Hooking up nREPL sessions on port 9100...
+; Connected session: clj, port: 9100
+; Evaluating code from settings: 'calva.autoEvaluateCode.onConnect.clj'
+nil
+clj꞉user꞉> 
+nil
+clj꞉demo.repo꞉> 
+#'demo.repo/ctx
+clj꞉demo.repo꞉> 
+; executing..
+; service received..
+{:result "I am happy!"}
+clj꞉demo.repo꞉> 
+; executing..
+; service received..
+{:error {:message "I am bad", :class "clojure.lang.ExceptionInfo", :data {:reason :just-bad}, :stacktrace [{:class "demo.sleepy$ex_test", :method "invokeStatic", :file "sleepy.clj", :line 12} {:class "demo.sleepy$ex_test", :method "invoke", :file "sleepy.clj", :line 11} {:class "clojure.lang.AFn", :method "applyToHelper", :file "AFn.java", :line 152} {:class "clojure.lang.AFn", :method "applyTo", :file "AFn.java", :line 144} {:class "clojure.lang.Var", :method "applyTo", :file "Var.java", :line 707} {:class "clojure.core$apply", :method "invokeStatic", :file "core.clj", :line 667} {:class "clojure.core$apply", :method "invoke", :file "core.clj", :line 662} {:class "clj_service.core$call_fn", :method "invokeStatic", :file "core.clj", :line 88} {:class "clj_service.core$call_fn", :method "invoke", :file "core.clj", :line 79} {:class "clj_service.executor$run_with_binding$fn__19894", :method "invoke", :file "executor.clj", :line 27} {:class "missionary.impl.Thunk$Process", :method "run", :file "Thunk.java", :line 61} {:class "java.util.concurrent.ThreadPoolExecutor", :method "runWorker", :file "ThreadPoolExecutor.java", :line 1144} {:class "java.util.concurrent.ThreadPoolExecutor$Worker", :method "run", :file "ThreadPoolExecutor.java", :line 642} {:class "java.lang.Thread", :method "run", :file "Thread.java", :line 1583}]}}
+clj꞉demo.repo꞉> 
+; executing..
+; service received..
+{:error {:message "Assert failed: impossible!\n(= 42 0)", :class "java.lang.AssertionError", :data nil, :stacktrace [{:class "demo.sleepy$assert_test", :method "invokeStatic", :file "sleepy.clj", :line 16} {:class "demo.sleepy$assert_test", :method "invoke", :file "sleepy.clj", :line 15} {:class "clojure.lang.AFn", :method "applyToHelper", :file "AFn.java", :line 152} {:class "clojure.lang.AFn", :method "applyTo", :file "AFn.java", :line 144} {:class "clojure.lang.Var", :method "applyTo", :file "Var.java", :line 707} {:class "clojure.core$apply", :method "invokeStatic", :file "core.clj", :line 667} {:class "clojure.core$apply", :method "invoke", :file "core.clj", :line 662} {:class "clj_service.core$call_fn", :method "invokeStatic", :file "core.clj", :line 88} {:class "clj_service.core$call_fn", :method "invoke", :file "core.clj", :line 79} {:class "clj_service.executor$run_with_binding$fn__19894", :method "invoke", :file "executor.clj", :line 27} {:class "missionary.impl.Thunk$Process", :method "run", :file "Thunk.java", :line 61} {:class "java.util.concurrent.ThreadPoolExecutor", :method "runWorker", :file "ThreadPoolExecutor.java", :line 1144} {:class "java.util.concurrent.ThreadPoolExecutor$Worker", :method "run", :file "ThreadPoolExecutor.java", :line 642} {:class "java.lang.Thread", :method "run", :file "Thread.java", :line 1583}]}}
+clj꞉demo.repo꞉> 

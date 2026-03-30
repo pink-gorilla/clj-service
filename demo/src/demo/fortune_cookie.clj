@@ -46,8 +46,8 @@
   ([db index]
    (nth db index))
   ([db]
-   (println "DB: " (pr-str db))
-   (println "DB TYPE" (type db))
+   ;(println "DB: " (pr-str db))
+   ;(println "DB TYPE" (type db))
    (let [size (count db)
          index (rand-int size)]
      (get-cookie db index))))
