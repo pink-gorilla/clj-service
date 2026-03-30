@@ -18,6 +18,4 @@
           r (execute ctx {:user identity :session browser-id} clj-call)]
       (res/response (response-success r)))
     (catch Exception ex
-      (let [msg (or (ex-message ex) "server-error")
-            data (or (ex-data ex) {})]
-        (res/response (response-error msg data))))))
+      (res/response (response-error ex)))))
