@@ -36,9 +36,7 @@
    {:keys [user session] :as setup}
    {:keys [fun] :as clj-call}]
   (m/sp
-   (println "executing..")
    (let [service (get-service clj clj-call)]
-     (println "service received..")
      (if (authorized? service user)
        (m/? (run-with-binding setup service clj-call))
        (throw (ex-info (str "user " (:user user) " not authorized for: " fun)
