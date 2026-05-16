@@ -11,3 +11,5 @@ clj-service/.calva
 clj-service/.cpcache
 clj-service/.nrepl-port
 clj-service/target
+.lsp
+.clj-kondo
